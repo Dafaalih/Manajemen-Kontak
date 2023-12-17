@@ -23,6 +23,7 @@ if __name__ == "__main__":
             nama = input("Nama Kontak: ")
             nomor = input("Nomor Kontak: ")
             rb_tree.insert(nama, nomor)
+            input("\nTekan enter untuk kembali ke menu")
 
         elif choice == "2":
             os.system("cls")
@@ -55,13 +56,15 @@ if __name__ == "__main__":
             rb_tree.display_contacts(descending=False)
             nama = input("Masukkan nama untuk menghapus kontak: ")
             rb_tree.delete(nama)
+            input("\nTekan enter untuk kembali ke menu")
 
         elif choice == "5":
             rb_tree.display_contacts(descending=False)
-            nomor = input("Masukkan nomor untuk mengedit kontak: ")
+            nama = input("Masukkan nama untuk mengedit kontak: ")
             new_nomor = input("Masukkan nomor baru: ")
             new_nama = input("Masukkan nama baru: ")
-            rb_tree.edit_contact(nomor, new_nomor, new_nama)
+            rb_tree.edit_contact(nama, new_nomor, new_nama)
+            input("\nTekan enter untuk kembali ke menu")
 
         elif choice == "6":
             konfirmasi = input("Apakah anda yakin ingin menyimpan perubahan ? (y/n)")

@@ -18,8 +18,28 @@ class RedBlackTree:
 
     def insert(self, nama, nomor):
         new_node = RedBlackTreeNode(nama, nomor, "RED", self.NIL, self.NIL, self.NIL)
-        self._insert_node(self.root, new_node)
-        self._fix_insert(new_node)
+        existing_node = self.search(nama)
+
+        if existing_node != self.NIL:
+            print(f"Kontak dengan nama '{nama}' sudah ada.")
+            print("1. Tambah kontak dengan nama yang berbeda")
+            print("2. Ganti nomor kontak yang sudah ada")
+            choice = input("Pilih opsi (1/2): ")
+
+            if choice == "1":
+                print("Ganti nama yang berbeda")
+                nama = input("==> ")
+                self.insert(nama, nomor)
+            elif choice == "2":
+                existing_node.nomor = nomor
+                print(f"Nomor kontak dengan nama '{nama}' berhasil diubah.")
+            else:
+                print("Pilihan tidak valid. Kontak tidak ditambahkan.")
+
+        else:
+            self._insert_node(self.root, new_node)
+            self._fix_insert(new_node)
+            print(f"Kontak dengan nama '{nama}' berhasil ditambahkan.")
 
     def _insert_node(self, root, new_node):
         if root == self.NIL:
@@ -58,7 +78,7 @@ class RedBlackTree:
                     node.parent.parent.color = "RED"
                     self._right_rotate(node.parent.parent)
             else:
-                # Kasus 2: Orang tua adalah kanan dari kakek (simetris dengan Kasus 1)
+                # Kasus 2: Orang tua adalah kanan dari kakek
                 y = node.parent.parent.left
                 # Kasus 2a: Paman (y) adalah merah
                 if y.color == "RED":
